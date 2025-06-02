@@ -5,6 +5,11 @@ $conn=mysqli_connect('db',
 'open');
 
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    echo '로그인이 필요합니다. <a href="login.php">로그인</a>';
+    exit;
+}
 ?>
 <!doctype html>
 <html>
@@ -24,6 +29,7 @@ while($row=mysqli_fetch_array($result))
 echo "<b><li><a href=\"homepage.php?id={$row['id']}\">{$row['title']}</a></li></b>";
 
 }
+
 $title=array(
     'title' => 'Welcome', 
     'description' => 'Hello, Web.');
